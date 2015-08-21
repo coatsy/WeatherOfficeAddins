@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html ng-app="weatherApp">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <title></title>
+    <script src="../../Scripts/jquery-2.1.4.js"></script>
+    <link href="../../Content/Office.css" rel="stylesheet" type="text/css" />
+    <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js" type="text/javascript"></script>
+
+    <!-- To enable offline debugging using a local reference to Office.js, use:                        -->
+    <!-- <script src="../../Scripts/Office/MicrosoftAjax.js" type="text/javascript"></script>  -->
+    <!-- <script src="../../Scripts/Office/1/office.js" type="text/javascript"></script>  -->
+    <link href="../App.css" rel="stylesheet" type="text/css" />
+    <script src="../App.js" type="text/javascript"></script>
+
+    <link href="Home.css" rel="stylesheet" type="text/css" />
+    <script src="Home.js" type="text/javascript"></script>
+    <script src="../../Scripts/angular.js"></script>
+    <script src="../../Scripts/angular-resource.js"></script>
+    <script src="../../Scripts/bootstrap.js"></script>
+    <script src="../controller.js"></script>
+    <script src="../filters.js"></script>
+    <link href="../../Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body ng-controller="WeatherCtrl">
+    <div id="content-header">
+        <div class="padding">
+            <h2>{{title}}</h2>
+        </div>
+    </div>
+    <div id="content-main">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-2">
+                    City: <input ng-model="city" ng-blur="doSearch()" ng-keyup="$event.keyCode == 13 ? doSearch() : null">
+                </div>
+                <div class="col-md-10">
+                    <div ng-hide="dataExists">
+                        No data - search for the weather for a city
+                    </div>
+                    <div ng-show="dataExists">
+                        <h1>Weather for {{weather.name}}, {{weather.sys.country}}</h1>
+                        <p>({{weather.coord.lat | latitude}}, {{weather.coord.lon | longitude}})</p>
+                        <h2><img ng-src="http://openweathermap.org/img/w/{{weather.weather[0].icon}}.png" /> {{weather.weather[0].description}} {{weather.main.temp - 273 | number : 1}} &#x2103</h2>
+                        <p>Readings as at {{weather.dt*1000 | date:"dd/MM/yyyy @ hh:mma"}}</p>
+                        <ul>
+                            <li>Current temperature: {{weather.main.temp - 273 | number : 1}} &#x2103</li>
+                            <li>Sunrise: {{weather.sys.sunrise * 1000 | date:"dd/MM/yyyy @ h:mma"}}</li>
+                            <li>Sunset: {{weather.sys.sunset * 1000 | date:"dd/MM/yyyy @ h:mma"}}</li>
+                            <li>Wind: {{weather.wind.deg | directionArrow}} {{weather.wind.speed * 3.6 | number : 1}} km/h {{weather.wind.deg | direction}} ({{weather.wind.deg | number : 0}}&#x00b0)</li>
+                        </ul>
+                        <div class="btn" ng-click="insertWeather()">Insert weather information</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
