@@ -3,7 +3,7 @@
 <OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="TaskPaneApp">
   <Id>c6d933cb-7e32-4adf-bd38-2ca671304625</Id>
   <Version>1.0.0.0</Version>
-  <ProviderName>[Provider name]</ProviderName>
+  <ProviderName>Coatsy</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
   <DisplayName DefaultValue="Weather Inserter" />
   <Description DefaultValue="WeatherOfficeAddins"/>

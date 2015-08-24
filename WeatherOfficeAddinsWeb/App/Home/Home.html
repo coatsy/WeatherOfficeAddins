@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html ng-app="weatherApp">
+<html>
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
@@ -23,14 +23,14 @@
     <script src="../filters.js"></script>
     <link href="../../Content/bootstrap.css" rel="stylesheet" />
 </head>
-<body ng-controller="WeatherCtrl">
+<body>
     <div id="content-header">
         <div class="padding">
-            <h2>{{title}}</h2>
+            <h2>Weather Inserter</h2>
         </div>
     </div>
     <div id="content-main">
-        <div class="container-fluid">
+        <div class="container-fluid" ng-controller="WeatherCtrl">
             <div class="row">
                 <div class="col-md-2">
                     City: <input ng-model="city" ng-blur="doSearch()" ng-keyup="$event.keyCode == 13 ? doSearch() : null">
@@ -42,13 +42,13 @@
                     <div ng-show="dataExists">
                         <h1>Weather for {{weather.name}}, {{weather.sys.country}}</h1>
                         <p>({{weather.coord.lat | latitude}}, {{weather.coord.lon | longitude}})</p>
-                        <h2><img ng-src="http://openweathermap.org/img/w/{{weather.weather[0].icon}}.png" /> {{weather.weather[0].description}} {{weather.main.temp - 273 | number : 1}} &#x2103</h2>
+                        <h2><img ng-src="http://openweathermap.org/img/w/{{weather.weather[0].icon}}.png" /> {{weather.weather[0].description}} {{weather.main.temp - 273 | number : 1}} &#x2103;</h2>
                         <p>Readings as at {{weather.dt*1000 | date:"dd/MM/yyyy @ hh:mma"}}</p>
                         <ul>
-                            <li>Current temperature: {{weather.main.temp - 273 | number : 1}} &#x2103</li>
+                            <li>Current temperature: {{weather.main.temp - 273 | number : 1}} &#x2103;</li>
                             <li>Sunrise: {{weather.sys.sunrise * 1000 | date:"dd/MM/yyyy @ h:mma"}}</li>
                             <li>Sunset: {{weather.sys.sunset * 1000 | date:"dd/MM/yyyy @ h:mma"}}</li>
-                            <li>Wind: {{weather.wind.deg | directionArrow}} {{weather.wind.speed * 3.6 | number : 1}} km/h {{weather.wind.deg | direction}} ({{weather.wind.deg | number : 0}}&#x00b0)</li>
+                            <li>Wind: {{weather.wind.deg | directionArrow}} {{weather.wind.speed * 3.6 | number : 1}} km/h {{weather.wind.deg | direction}} ({{weather.wind.deg | number : 0}}&#x00b0;)</li>
                         </ul>
                         <div class="btn" ng-click="insertWeather()">Insert weather information</div>
                     </div>
